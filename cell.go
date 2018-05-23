@@ -3,6 +3,7 @@ package xlsx
 import (
 	"fmt"
 	"math"
+	"math/big"
 	"strconv"
 	"time"
 )
@@ -75,6 +76,27 @@ func (c *Cell) Merge(hcells, vcells int) {
 // Type returns the CellType of a cell. See CellType constants for more details.
 func (c *Cell) Type() CellType {
 	return c.cellType
+}
+
+// SetRawValue sets the value of a cell.
+func (c *Cell) SetRawValue(s string, cellType CellType) {
+	c.Value = s
+	c.formula = ""
+	c.cellType = cellType
+}
+
+// SetBigInt sets the big.Int value of a cell.
+func (c *Cell) SetBigInt(i *big.Int) {
+	c.Value = i.String()
+	c.formula = ""
+	c.cellType = CellTypeNumeric
+}
+
+// SetBigFloat sets the big.Float value of a cell.
+func (c *Cell) SetBigFloat(f *big.Float) {
+	c.Value = f.Text('f', -1)
+	c.formula = ""
+	c.cellType = CellTypeNumeric
 }
 
 // SetString sets the value of a cell to a string.
