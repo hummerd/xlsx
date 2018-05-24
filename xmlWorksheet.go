@@ -204,6 +204,7 @@ type xlsxCol struct {
 	Width        float64 `xml:"width,attr"`
 	CustomWidth  bool    `xml:"customWidth,attr,omitempty"`
 	OutlineLevel uint8   `xml:"outlineLevel,attr,omitempty"`
+	BestFit      int     `xml:"bestFit,attr,omitempty"`
 }
 
 // xlsxDimension directly maps the dimension element in the namespace

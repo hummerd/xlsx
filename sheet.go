@@ -242,8 +242,15 @@ func (s *Sheet) makeXLSXSheet(refTable *RefTable, styles *xlsxStyleSheet) *xlsxW
 		} else {
 			customWidth = true
 		}
+
+		bestFit := 0
+		if col.BestFit {
+			bestFit = 1
+		}
+
 		worksheet.Cols.Col = append(worksheet.Cols.Col,
-			xlsxCol{Min: col.Min,
+			xlsxCol{
+				Min:          col.Min,
 				Max:          col.Max,
 				Hidden:       col.Hidden,
 				Width:        col.Width,
@@ -251,6 +258,7 @@ func (s *Sheet) makeXLSXSheet(refTable *RefTable, styles *xlsxStyleSheet) *xlsxW
 				Collapsed:    col.Collapsed,
 				OutlineLevel: col.OutlineLevel,
 				Style:        XfId,
+				BestFit:      bestFit,
 			})
 
 		if col.OutlineLevel > maxLevelCol {

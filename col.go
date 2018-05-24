@@ -10,6 +10,7 @@ type Col struct {
 	Width        float64
 	Collapsed    bool
 	OutlineLevel uint8
+	BestFit      bool
 	numFmt       string
 	parsedNumFmt *parsedNumberFormat
 	style        *Style
