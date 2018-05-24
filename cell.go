@@ -85,6 +85,14 @@ func (c *Cell) SetRawValue(s string, cellType CellType) {
 	c.cellType = cellType
 }
 
+// SetRawValueWithFormat sets the value of cell with specified format.
+func (c *Cell) SetRawValueWithFormat(s string, cellType CellType, format string) {
+	c.Value = s
+	c.formula = ""
+	c.cellType = cellType
+	c.NumFmt = format
+}
+
 // SetBigInt sets the big.Int value of a cell.
 func (c *Cell) SetBigInt(i *big.Int) {
 	c.Value = i.String()
